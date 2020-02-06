@@ -5,6 +5,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
+import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @Suppress("DEPRECATION")
@@ -24,4 +27,17 @@ fun isConnected(cont:Context):Boolean {
             return networkInfo != null && networkInfo.isConnected
         }
     }
+}
+
+fun dateFormat(timestamp:Int): String {
+    TimeZone.setDefault(TimeZone.getTimeZone("UTC"))
+    val time = Date(timestamp.toLong() * 1000)
+    val dateTime = SimpleDateFormat("dd/MM/YYYY").format(time)
+    return dateTime
+}
+
+fun currencyFormat(valor:Double): String {
+    val format = NumberFormat.getCurrencyInstance(Locale.getDefault())
+    format.setCurrency(Currency.getInstance("BRL"))
+    return format.format(valor)
 }

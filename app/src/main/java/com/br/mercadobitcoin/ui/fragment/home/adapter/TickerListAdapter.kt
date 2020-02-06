@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.br.mercadobitcoin.R
 import com.br.mercadobitcoin.database.entity.Ticker
+import com.br.mercadobitcoin.utils.currencyFormat
+import com.br.mercadobitcoin.utils.dateFormat
 import kotlinx.android.synthetic.main.item_ticker.view.*
 
 class TickerListAdapter(private var ticker: List<Ticker> = mutableListOf()): RecyclerView.Adapter<TickerListAdapter.TickerViewHolder>() {
@@ -38,13 +40,13 @@ class TickerListAdapter(private var ticker: List<Ticker> = mutableListOf()): Rec
 
         fun setItemView(item:Ticker){
             mTxtId.text   = item.id
-            mTxtHigh.text = item.high.toString()
-            mTxtLow.text  = item.low.toString()
-            mTxtVol.text  = item.vol.toString()
-            mTxtLast.text = item.last.toString()
-            mTxtBuy.text  = item.buy.toString()
-            mTxtSell.text = item.sell.toString()
-            mTxtDate.text = item.date.toString()
+            mTxtHigh.text = String.format("Maior preço: %s", currencyFormat(item.high))
+            mTxtLow.text  = String.format("Menor preço: %s", currencyFormat(item.low))
+            mTxtVol.text  = String.format("Volume 24hs: %s", currencyFormat(item.vol))
+            mTxtLast.text = String.format("Última negociação: %s", currencyFormat(item.last))
+            mTxtBuy.text  = String.format("Maior preço de oferta: %s", currencyFormat(item.buy))
+            mTxtSell.text = String.format("Menor preço de oferta: %s", currencyFormat(item.sell))
+            mTxtDate.text = String.format("Data: %s",dateFormat(item.date))
         }
     }
 }

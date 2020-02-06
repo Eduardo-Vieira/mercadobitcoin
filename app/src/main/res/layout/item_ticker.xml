@@ -21,7 +21,8 @@
                 android:id="@+id/txtId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="0"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtHigh"
