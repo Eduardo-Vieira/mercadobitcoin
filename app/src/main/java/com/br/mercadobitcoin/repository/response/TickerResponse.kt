@@ -1,10 +1,10 @@
-package com.br.mercadobitcoin.network.response
+package com.br.mercadobitcoin.repository.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class TickerResponse {
+data class TickerResponse(
     @SerializedName("ticker")
     @Expose
-    var ticker: Ticker? = null
-}
+    var ticker: Ticker
+)

@@ -1,6 +1,6 @@
 package com.br.mercadobitcoin.network.service
 
-import com.br.mercadobitcoin.network.response.TickerResponse
+import com.br.mercadobitcoin.repository.response.TickerResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,2 +1,2 @@
 # mercadobitcoin
-Mercado bitcoin app modelo MVVM Android, Koin, Room, Retrofit e navigation
+Mercado bitcoin app modelo MVVM Clean, Android, Koin, Room, Retrofit e navigation

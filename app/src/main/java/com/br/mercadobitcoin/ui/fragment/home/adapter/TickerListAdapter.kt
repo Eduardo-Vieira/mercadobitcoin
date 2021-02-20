@@ -3,12 +3,12 @@ package com.br.mercadobitcoin.ui.fragment.home.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.br.mercadobitcoin.R
 import com.br.mercadobitcoin.database.entity.Ticker
 import com.br.mercadobitcoin.utils.currencyFormat
 import com.br.mercadobitcoin.utils.dateFormat
-import kotlinx.android.synthetic.main.item_ticker.view.*
 
 class TickerListAdapter(private var ticker: List<Ticker> = mutableListOf()): RecyclerView.Adapter<TickerListAdapter.TickerViewHolder>() {
 
@@ -29,14 +29,15 @@ class TickerListAdapter(private var ticker: List<Ticker> = mutableListOf()): Rec
     }
 
     inner class TickerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        private val mTxtId = itemView.txtId
-        private val mTxtHigh = itemView.txtHigh
-        private val mTxtLow  = itemView.txtLow
-        private val mTxtVol  = itemView.txtVol
-        private val mTxtLast = itemView.txtLast
-        private val mTxtBuy  = itemView.txtBuy
-        private val mTxtSell = itemView.txtSell
-        private val mTxtDate = itemView.txtDate
+
+        private val mTxtId = itemView.findViewById<TextView>(R.id.txtId)
+        private val mTxtHigh = itemView.findViewById<TextView>(R.id.txtHigh)
+        private val mTxtLow  = itemView.findViewById<TextView>(R.id.txtLow)
+        private val mTxtVol  = itemView.findViewById<TextView>(R.id.txtVol)
+        private val mTxtLast = itemView.findViewById<TextView>(R.id.txtLast)
+        private val mTxtBuy  = itemView.findViewById<TextView>(R.id.txtBuy)
+        private val mTxtSell = itemView.findViewById<TextView>(R.id.txtSell)
+        private val mTxtDate = itemView.findViewById<TextView>(R.id.txtDate)
 
         fun setItemView(item:Ticker){
             mTxtId.text   = item.id

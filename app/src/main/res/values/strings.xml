@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Mercado bitcoin</string>
+
+    <string name="home_title_error">Error</string>
+    <string name="home_error">Não Foi possivel acessar a internet.\nO que vocês esta vendo é um cache da sua ultima visualização.</string>
 </resources>

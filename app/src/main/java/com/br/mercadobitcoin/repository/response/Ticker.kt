@@ -1,28 +1,28 @@
-package com.br.mercadobitcoin.network.response
+package com.br.mercadobitcoin.repository.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Ticker {
+data class Ticker(
     @SerializedName("high")
     @Expose
-    var high: Double? = null
+    val high: Double,
     @SerializedName("low")
     @Expose
-    var low: Double? = null
+    val low: Double,
     @SerializedName("vol")
     @Expose
-    var vol: Double? = null
+    val vol: Double,
     @SerializedName("last")
     @Expose
-    var last: Double? = null
+    val last: Double,
     @SerializedName("buy")
     @Expose
-    var buy: Double? = null
+    val buy: Double,
     @SerializedName("sell")
     @Expose
-    var sell: Double? = null
+    val sell: Double,
     @SerializedName("date")
     @Expose
-    var date: Int? = null
-}
+    val date: Int
+)

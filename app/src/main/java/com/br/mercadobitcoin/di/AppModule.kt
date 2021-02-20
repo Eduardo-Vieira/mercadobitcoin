@@ -2,13 +2,14 @@ package com.br.mercadobitcoin.di
 
 import androidx.room.Room
 import com.br.mercadobitcoin.BuildConfig
+import com.br.mercadobitcoin.interactor.HomeInteractorImp
 import com.br.mercadobitcoin.database.AppDatabase
 import com.br.mercadobitcoin.network.interceptor.AuthInterceptor
 import com.br.mercadobitcoin.network.provideBTCService
 import com.br.mercadobitcoin.network.provideOkHttpClient
 import com.br.mercadobitcoin.network.provideRetrofit
-import com.br.mercadobitcoin.repository.HomeRepository
-import com.br.mercadobitcoin.ui.fragment.home.HomeViewModel
+import com.br.mercadobitcoin.repository.HomeRepositoryImp
+import com.br.mercadobitcoin.ui.fragment.home.viewmodel.HomeViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -34,9 +35,15 @@ val daoModule = module {
     single { get<AppDatabase>().tickerDao() }
 
     //Repository
-    single { HomeRepository(get(),get()) }
+    single { HomeRepositoryImp(get(),get()) }
+    //Interactor
+    single { HomeInteractorImp(get()) }
 }
 
 val viewModelModule = module {
-    viewModel { HomeViewModel(get()) }
+    viewModel {
+        HomeViewModel(
+            get()
+        )
+    }
 }

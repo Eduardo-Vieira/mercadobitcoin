@@ -17,5 +17,5 @@ interface TickerDao {
     suspend fun delete(ticker: Ticker)
 
     @Query("SELECT * FROM ticker")
-    fun getAll(): LiveData<List<Ticker>>
+    suspend fun getAll(): List<Ticker>
 }
