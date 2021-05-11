@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.br.mercadobitcoin.R
 import com.br.mercadobitcoin.database.entity.Ticker
+import com.br.mercadobitcoin.ui.fragment.home.adapter.SelectListAdapter
 import com.br.mercadobitcoin.ui.fragment.home.adapter.TickerListAdapter
 import com.br.mercadobitcoin.ui.fragment.home.viewmodel.HomeViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -21,6 +22,9 @@ class HomeFragment : Fragment() {
 
     private val adapter by lazy {
         TickerListAdapter()
+    }
+    private val adapterSelect by lazy {
+        SelectListAdapter()
     }
 
     override fun onCreateView(
@@ -34,7 +38,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         configRecyclerviewTicker(view)
+        configRecyclerviewSelect(view)
         initObserve()
+    }
+
+    private fun configRecyclerviewSelect(view: View){
+        val recyclerviewSelect = view.findViewById<RecyclerView>(R.id.recyclerView_select)
+        recyclerviewSelect.adapter = adapterSelect
     }
 
     private fun configRecyclerviewTicker(view: View){
@@ -44,6 +54,7 @@ class HomeFragment : Fragment() {
 
     fun adapterUpdate(ticker: List<Ticker>){
         adapter.update(ticker)
+        adapterSelect.update(ticker)
     }
 
     fun showError(){

@@ -10,7 +10,9 @@ import com.br.mercadobitcoin.database.entity.Ticker
 import com.br.mercadobitcoin.utils.currencyFormat
 import com.br.mercadobitcoin.utils.dateFormat
 
-class TickerListAdapter(private var ticker: List<Ticker> = mutableListOf()): RecyclerView.Adapter<TickerListAdapter.TickerViewHolder>() {
+class TickerListAdapter(
+    private var ticker: List<Ticker> = mutableListOf()
+): RecyclerView.Adapter<TickerListAdapter.TickerViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TickerViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_ticker, parent, false)
