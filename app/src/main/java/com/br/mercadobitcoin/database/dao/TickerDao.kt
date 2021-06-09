@@ -1,6 +1,5 @@
 package com.br.mercadobitcoin.database.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.br.mercadobitcoin.database.entity.Ticker
 

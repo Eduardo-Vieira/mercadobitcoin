@@ -4,14 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.br.mercadobitcoin.R
 import com.br.mercadobitcoin.database.entity.Ticker
 import com.br.mercadobitcoin.utils.currencyFormat
 import com.br.mercadobitcoin.utils.setBitTitle
 
-class SelectListAdapter(
-    private var ticker: List<Ticker> = mutableListOf()
+class SelectListAdapter constructor(
+    private var ticker: List<Ticker> = mutableListOf(),
+    val itemClick :(item: Ticker) -> Unit
 ): RecyclerView.Adapter<SelectListAdapter.SelectViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectViewHolder {
@@ -32,6 +34,7 @@ class SelectListAdapter(
 
     inner class SelectViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
+        private val itemSelectView = itemView.findViewById<CardView>(R.id.itemSelectView)
         private val mTxtId = itemView.findViewById<TextView>(R.id.select_txtId)
         private val mTxtBuy = itemView.findViewById<TextView>(R.id.select_txtBuy)
         private val mTxtTitle  = itemView.findViewById<TextView>(R.id.select_txtTitle)
@@ -41,6 +44,10 @@ class SelectListAdapter(
             mTxtId.text   = item.id
             mTxtTitle.text = setBitTitle(item.id)
             mTxtBuy.text = String.format("Cotação %s", currencyFormat(item.buy))
+
+            itemSelectView.setOnClickListener {
+                itemClick(item)
+            }
 
         }
     }

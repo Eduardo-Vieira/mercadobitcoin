@@ -13,6 +13,8 @@ import com.br.mercadobitcoin.database.entity.Ticker
 import com.br.mercadobitcoin.ui.fragment.home.adapter.SelectListAdapter
 import com.br.mercadobitcoin.ui.fragment.home.adapter.TickerListAdapter
 import com.br.mercadobitcoin.ui.fragment.home.viewmodel.HomeViewModel
+import com.br.mercadobitcoin.utils.currencyFormat
+import com.br.mercadobitcoin.utils.setBitTitle
 import org.koin.android.viewmodel.ext.android.viewModel
 
 
@@ -23,9 +25,7 @@ class HomeFragment : Fragment() {
     private val adapter by lazy {
         TickerListAdapter()
     }
-    private val adapterSelect by lazy {
-        SelectListAdapter()
-    }
+    private var adapterSelect: SelectListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +43,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun configRecyclerviewSelect(view: View){
+        adapterSelect = SelectListAdapter( mutableListOf(), itemClick = {
+            clickItemSelect(it)
+        })
         val recyclerviewSelect = view.findViewById<RecyclerView>(R.id.recyclerView_select)
         recyclerviewSelect.adapter = adapterSelect
+    }
+
+    private fun clickItemSelect(item: Ticker){
+        AlertDialog.Builder(requireContext())
+            .setTitle(setBitTitle(item.id))
+            .setMessage(String.format("Cotação %s", currencyFormat(item.buy)))
+            .show()
     }
 
     private fun configRecyclerviewTicker(view: View){
@@ -54,7 +64,7 @@ class HomeFragment : Fragment() {
 
     fun adapterUpdate(ticker: List<Ticker>){
         adapter.update(ticker)
-        adapterSelect.update(ticker)
+        adapterSelect?.update(ticker)
     }
 
     fun showError(){
